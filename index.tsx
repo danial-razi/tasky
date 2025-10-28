@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import './index.css';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -14,9 +15,10 @@ root.render(
   </React.StrictMode>
 );
 
-if ('serviceWorker' in navigator) {
+if (import.meta.env.PROD && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./service-worker.ts')
+    const swPath = `${import.meta.env.BASE_URL}service-worker.js`;
+    navigator.serviceWorker.register(swPath)
       .then(registration => {
         console.log('ServiceWorker registration successful with scope: ', registration.scope);
       })

@@ -30,12 +30,13 @@ export const useTheme = (): [Theme, () => void] => {
     const root = window.document.documentElement;
     const metaThemeColor = document.querySelector('meta[name="theme-color"]');
 
+    root.classList.toggle('dark', theme === 'dark');
+    root.classList.toggle('light', theme === 'light');
+
+    // zinc-950, matching the dark background color in App.tsx
     if (theme === 'dark') {
-      root.classList.add('dark');
-      // zinc-950, matching the dark background color in App.tsx
       metaThemeColor?.setAttribute('content', '#09090b');
     } else {
-      root.classList.remove('dark');
       // slate-100, matching the light background color in App.tsx
       metaThemeColor?.setAttribute('content', '#f1f5f9');
     }

@@ -1,22 +1,29 @@
 /// <reference lib="webworker" />
 
-// FIX: Removed redundant declaration of 'self'. The `webworker` lib reference
-// already provides the correct type for the service worker's global scope.
-const CACHE_NAME = 'tasky-cache-v1';
-const urlsToCache = [
-  './',
-  './index.html',
-  './manifest.json',
+// Explicitly declare the service worker scope so TypeScript understands the available APIs.
+declare const self: ServiceWorkerGlobalScope;
+const CACHE_NAME = 'tasky-cache-v2';
+const CORE_ASSETS = [
+  new URL('./', self.location.href).toString(),
+  new URL('./index.html', self.location.href).toString(),
+  new URL('./manifest.json', self.location.href).toString(),
 ];
+const FALLBACK_HTML = CORE_ASSETS[1];
 
 self.addEventListener('install', (event: ExtendableEvent) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache);
+  event.waitUntil((async () => {
+    const cache = await caches.open(CACHE_NAME);
+    await Promise.allSettled(
+      CORE_ASSETS.map(async asset => {
+        try {
+          await cache.add(new Request(asset, { cache: 'reload' }));
+        } catch (error) {
+          console.warn(`Failed to precache ${asset}`, error);
+        }
       })
-  );
+    );
+  })());
+  self.skipWaiting();
 });
 
 self.addEventListener('activate', (event: ExtendableEvent) => {
@@ -30,7 +37,7 @@ self.addEventListener('activate', (event: ExtendableEvent) => {
           }
         })
       );
-    })
+    }).then(() => self.clients.claim())
   );
 });
 
@@ -39,38 +46,40 @@ self.addEventListener('fetch', (event: FetchEvent) => {
     return;
   }
 
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        if (response) {
-          return response;
+  event.respondWith((async () => {
+    const cachedResponse = await caches.match(event.request);
+    if (cachedResponse) {
+      return cachedResponse;
+    }
+
+    try {
+      const networkResponse = await fetch(event.request);
+
+      if (!networkResponse || networkResponse.status !== 200) {
+        return networkResponse;
+      }
+
+      const cache = await caches.open(CACHE_NAME);
+
+      if (networkResponse.type === 'opaque') {
+        await cache.put(event.request, networkResponse.clone());
+        return networkResponse;
+      }
+
+      const responseToCache = networkResponse.clone();
+      await cache.put(event.request, responseToCache);
+
+      return networkResponse;
+    } catch (error) {
+      if (event.request.mode === 'navigate') {
+        const fallback = await caches.match(FALLBACK_HTML);
+        if (fallback) {
+          return fallback;
         }
+      }
 
-        return fetch(event.request).then(
-          networkResponse => {
-            if (!networkResponse || networkResponse.status !== 200) {
-              return networkResponse;
-            }
-
-            // Do not cache opaque responses from third-party CDNs unless necessary,
-            // as we can't check their validity.
-            if(networkResponse.type === 'opaque') {
-                return networkResponse;
-            }
-
-            const responseToCache = networkResponse.clone();
-
-            caches.open(CACHE_NAME)
-              .then(cache => {
-                cache.put(event.request, responseToCache);
-              });
-
-            return networkResponse;
-          }
-        ).catch(error => {
-            console.error('Fetching failed:', error);
-            throw error;
-        });
-      })
-  );
+      console.error('Fetching failed:', error);
+      throw error;
+    }
+  })());
 });
