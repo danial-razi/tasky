@@ -17,8 +17,8 @@ root.render(
 
 if (import.meta.env.PROD && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    const swPath = `${import.meta.env.BASE_URL}service-worker.js`;
-    navigator.serviceWorker.register(swPath)
+    const swUrl = new URL('service-worker.js', window.location.href);
+    navigator.serviceWorker.register(swUrl, { type: 'module' })
       .then(registration => {
         console.log('ServiceWorker registration successful with scope: ', registration.scope);
       })

@@ -5,7 +5,11 @@
     "outDir": "dist",
     "declaration": false,
     "sourceMap": false,
-    "allowImportingTsExtensions": false
+    "allowImportingTsExtensions": false,
+    "isolatedModules": false,
+    "module": "es2020",
+    "moduleResolution": "node",
+    "types": []
   },
   "include": [
     "service-worker.ts"
