@@ -2,7 +2,7 @@
 
 Tasky is a modern, lightweight, and offline-first Progressive Web App (PWA) for task and time management. Designed for simplicity and efficiency, it helps you create, manage, and track your daily tasks directly in your browser. With no server required, all your data is stored locally, ensuring privacy and blazing-fast performance, even without an internet connection.
 
-![Tasky Application Screenshot](https://placehold.co/800x450/e2e8f0/475569?text=Tasky%20-%20Clean%20%26%20Modern%20UI)
+![Tasky Application Screenshot](public/homescreen.png)
 
 ---
 
