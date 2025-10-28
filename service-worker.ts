@@ -7,6 +7,10 @@ const CORE_ASSETS = [
   new URL('./', self.location.href).toString(),
   new URL('./index.html', self.location.href).toString(),
   new URL('./manifest.json', self.location.href).toString(),
+  new URL('./icons/icon-32.png', self.location.href).toString(),
+  new URL('./icons/icon-180.png', self.location.href).toString(),
+  new URL('./icons/icon-192.png', self.location.href).toString(),
+  new URL('./icons/icon-512.png', self.location.href).toString(),
 ];
 const FALLBACK_HTML = CORE_ASSETS[1];
 

@@ -121,6 +121,20 @@ The project is organized into a clear and maintainable structure:
 
 ---
 
+## 🎨 Branding & Icons
+
+Tasky ships with placeholder icons stored in `public/icons/`:
+
+- `icon-32.png` — favicon for browsers  
+- `icon-180.png` — Apple touch icon  
+- `icon-192.png` — standard PWA launcher icon  
+- `icon-512.png` — large icon used for install banners and maskable icons
+
+Replace each file with your own artwork while keeping the same filenames and dimensions. After updating the assets, run `npm run build` (and redeploy if needed) so the new icons are bundled into `dist/` and precached by the service worker.
+
+
+---
+
 ## 📄 License
 
 This project is licensed under the MIT License.
