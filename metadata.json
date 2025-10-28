@@ -1,0 +1,5 @@
+{
+  "name": "Tasky - Task & Time Tracker",
+  "description": "Tasky is a simple, offline-first task and time tracker. It helps you manage your daily tasks, track the time spent on them, and export your data for reporting. All data is stored locally in your browser.",
+  "requestFramePermissions": []
+}

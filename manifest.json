@@ -1,0 +1,23 @@
+
+{
+  "short_name": "Tasky",
+  "name": "Tasky - Task & Time Tracker",
+  "description": "Tasky is a simple, offline-first task and time tracker. It helps you manage your daily tasks, track the time spent on them, and export your data for reporting. All data is stored locally in your browser.",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Ccircle cx='256' cy='256' r='256' fill='%230284c7'/%3E%3Cpath fill='%23fff' d='M433.9 148.1 409.3 123.5c-9.4-9.4-24.6-9.4-33.9 0L192 306.9l-81.4-81.4c-9.4-9.4-24.6-9.4-33.9 0l-24.6 24.6c-9.4 9.4-9.4 24.6 0 33.9l120 120c9.4 9.4 24.6 9.4 33.9 0l224-224c9.4-9.4 9.4-24.6 0-33.9z'/%3E%3C/svg%3E",
+      "type": "image/svg+xml",
+      "sizes": "192x192"
+    },
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Ccircle cx='256' cy='256' r='256' fill='%230284c7'/%3E%3Cpath fill='%23fff' d='M433.9 148.1 409.3 123.5c-9.4-9.4-24.6-9.4-33.9 0L192 306.9l-81.4-81.4c-9.4-9.4-24.6-9.4-33.9 0l-24.6 24.6c-9.4 9.4-9.4 24.6 0 33.9l120 120c9.4 9.4 24.6 9.4 33.9 0l224-224c9.4-9.4 9.4-24.6 0-33.9z'/%3E%3C/svg%3E",
+      "type": "image/svg+xml",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "theme_color": "#0284c7",
+  "background_color": "#f1f5f9"
+}
