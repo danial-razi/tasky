@@ -2,6 +2,8 @@
 
 Tasky is a modern, lightweight, and offline-first Progressive Web App (PWA) for task and time management. Designed for simplicity and efficiency, it helps you create, manage, and track your daily tasks directly in your browser. With no server required, all your data is stored locally, ensuring privacy and blazing-fast performance, even without an internet connection.
 
+[→ Launch Tasky PWA](https://danial-razi.github.io/tasky)
+
 ![Tasky Application Screenshot](public/images/homescreen.png)
 
 ---
@@ -37,57 +39,28 @@ Tasky is a modern, lightweight, and offline-first Progressive Web App (PWA) for 
 
 ## 🚀 Getting Started
 
-To run Tasky on your local machine, you need to serve the project files using a local web server. Opening the `index.html` file directly from your filesystem will not work correctly due to browser security policies for modern web features like Service Workers.
+### Install Tasky as a PWA (recommended)
 
-Here are two simple ways to start a local server:
+1. Visit the hosted app at [https://danial-razi.github.io/tasky](https://danial-razi.github.io/tasky).
+2. **Desktop (Chrome / Edge / Brave)**: Click the install icon in the address bar (monitor + down arrow) and confirm the prompt.
+3. **Android (Chrome)**: Open the browser menu → *Install app* (or *Add to Home screen*).
+4. **iOS (Safari)**: Tap the share icon → *Add to Home Screen*.
 
-### Option 1: Using Python (if installed)
+Tasky will live in its own window with offline support, native-like shortcuts, and persistent data.
 
-1.  Navigate to the project's root directory in your terminal.
-2.  Run one of the following commands, depending on your Python version:
-    *   **Python 3.x**: `python -m http.server`
-    *   **Python 2.x**: `python -m SimpleHTTPServer`
-3.  Open your web browser and go to `http://localhost:8000`.
+### Run Tasky locally (development)
 
-### Option 2: Using Node.js and `serve`
+If you plan to work on the codebase, start the Vite dev server instead:
 
-1.  Make sure you have [Node.js](https://nodejs.org/) installed.
-2.  Open your terminal in the project's root directory.
-3.  Install the `serve` package globally (if you haven't already):
-    ```bash
-    npm install -g serve
-    ```
-4.  Start the server:
-    ```bash
-    serve .
-    ```
-5.  The terminal will provide a local URL (usually `http://localhost:3000`). Open it in your browser.
+```bash
+npm install
+npm run dev
+```
 
-### Installing as a PWA
-
-For the best experience, you can install Tasky on your device:
--   **On Desktop**: Look for an install icon in the address bar of your browser (e.g., Chrome, Edge).
--   **On Mobile**: Use the "Add to Home Screen" option in your browser's menu.
-
-This adds a Tasky icon to your desktop or home screen for quick, app-like access.
+Open the printed local URL (default http://localhost:5173) to access the app with hot reload and full developer tooling.
 
 ---
 
-## 🚀 Deploying to GitHub Pages
-
-You can easily deploy Tasky as a live PWA using GitHub Pages.
-
-1.  **Push to GitHub**: Make sure your code is pushed to a GitHub repository.
-2.  **Enable GitHub Pages**:
-    - In your repository, go to **Settings > Pages**.
-    - Under "Build and deployment", for the "Source", select **Deploy from a branch**.
-    - Choose the branch you want to deploy (e.g., `main`).
-    - Select the folder `/ (root)` and click **Save**.
-3.  **Access Your Site**: GitHub will build and deploy your site. After a few minutes, your Tasky PWA will be available at `https://<your-username>.github.io/<your-repository-name>/`.
-
-*Note: This project is already configured with the necessary relative paths in `index.html`, `index.tsx`, and `service-worker.ts` to work correctly on GitHub Pages.*
-
----
 
 ## 📂 Project Structure
 
@@ -118,20 +91,6 @@ The project is organized into a clear and maintainable structure:
 ├── service-worker.ts   # PWA service worker logic
 └── README.md           # You are here!
 ```
-
----
-
-## 🎨 Branding & Icons
-
-Tasky ships with placeholder icons stored in `public/icons/`:
-
-- `icon-32.png` — favicon for browsers  
-- `icon-180.png` — Apple touch icon  
-- `icon-192.png` — standard PWA launcher icon  
-- `icon-512.png` — large icon used for install banners and maskable icons
-
-Replace each file with your own artwork while keeping the same filenames and dimensions. After updating the assets, run `npm run build` (and redeploy if needed) so the new icons are bundled into `dist/` and precached by the service worker.
-
 
 ---
 
