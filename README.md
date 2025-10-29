@@ -1,4 +1,9 @@
 # Tasky - A Simple, Offline-First Task & Time Tracker
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Tasky-2F855A?logo=googlechrome&logoColor=white)](https://danial-razi.github.io/tasky)
+[![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-0EA5E9?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![MIT License](https://img.shields.io/badge/License-MIT-2D3748.svg)](LICENSE)
 
 Tasky is a modern, lightweight, and offline-first Progressive Web App (PWA) for task and time management. Designed for simplicity and efficiency, it helps you create, manage, and track your daily tasks directly in your browser. With no server required, all your data is stored locally, ensuring privacy and blazing-fast performance, even without an internet connection.
 

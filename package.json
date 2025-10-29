@@ -2,7 +2,29 @@
   "name": "tasky",
   "private": true,
   "version": "1.0.0",
+  "description": "Tasky is an offline-first task and time tracking PWA built with React, TypeScript, and Tailwind CSS.",
+  "keywords": [
+    "task manager",
+    "time tracker",
+    "pwa",
+    "offline first",
+    "productivity",
+    "react",
+    "typescript",
+    "tailwind css", 
+    "minimal apps"
+  ],
   "type": "module",
+  "homepage": "https://danial-razi.github.io/tasky",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danial-razi/tasky.git"
+  },
+  "bugs": {
+    "url": "https://github.com/danial-razi/tasky/issues"
+  },
+  "author": "Danial Razi",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "vite build && tsc --project tsconfig.sw.json",

@@ -1,0 +1,22 @@
+name: ❓ Question / Discussion
+description: Ask a question or start a discussion about Tasky
+title: "[Question]: "
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a question about Tasky? Please fill this form to help us answer quickly.
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like to know?
+      placeholder: How can I sync Tasky tasks between devices?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context or Background
+      description: Give us some context (why you’re asking, what you tried, etc.)
