@@ -41,7 +41,10 @@ const Timer: React.FC<TimerProps> = ({ task, onStart, onPause, onStop }) => {
       <div className="flex items-center space-x-2">
         {task.status !== TaskStatus.InProgress ? (
           <button
-            onClick={() => onStart(task.id)}
+            onClick={(event) => {
+              event.stopPropagation();
+              onStart(task.id);
+            }}
             disabled={task.isCompleted}
             aria-label="Start timer"
             className="p-2 rounded-full text-slate-500 hover:bg-emerald-100 hover:text-emerald-600 dark:hover:bg-emerald-900 dark:hover:text-emerald-400 disabled:opacity-50 disabled:hover:bg-transparent disabled:cursor-not-allowed transition-colors"
@@ -50,7 +53,10 @@ const Timer: React.FC<TimerProps> = ({ task, onStart, onPause, onStop }) => {
           </button>
         ) : (
           <button
-            onClick={() => onPause(task.id)}
+            onClick={(event) => {
+              event.stopPropagation();
+              onPause(task.id);
+            }}
             aria-label="Pause timer"
             className="p-2 rounded-full text-slate-500 hover:bg-amber-100 hover:text-amber-600 dark:hover:bg-amber-900 dark:hover:text-amber-400 transition-colors"
           >
@@ -58,7 +64,10 @@ const Timer: React.FC<TimerProps> = ({ task, onStart, onPause, onStop }) => {
           </button>
         )}
         <button
-          onClick={() => onStop(task.id)}
+          onClick={(event) => {
+            event.stopPropagation();
+            onStop(task.id);
+          }}
           aria-label="Stop and reset timer"
           className="p-2 rounded-full text-slate-500 hover:bg-red-100 hover:text-red-600 dark:hover:bg-red-900 dark:hover:text-red-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           disabled={task.elapsedTime === 0 && task.status !== TaskStatus.InProgress}
