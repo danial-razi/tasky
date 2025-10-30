@@ -1,5 +1,5 @@
 
-import { Task } from '../types';
+import { Task, TaskStatus } from '../types';
 
 const downloadFile = (filename: string, content: string, mimeType: string) => {
   const element = document.createElement('a');
@@ -11,14 +11,31 @@ const downloadFile = (filename: string, content: string, mimeType: string) => {
   document.body.removeChild(element);
 };
 
+const withLiveElapsedTime = (tasks: Task[]): Task[] => {
+  const now = Date.now();
+
+  return tasks.map(task => {
+    if (task.status === TaskStatus.InProgress && task.lastStartTime) {
+      const liveElapsedSeconds = (now - task.lastStartTime) / 1000;
+      return {
+        ...task,
+        elapsedTime: task.elapsedTime + liveElapsedSeconds,
+      };
+    }
+    return task;
+  });
+};
+
 export const exportToJSON = (tasks: Task[]) => {
-  const jsonString = JSON.stringify(tasks, null, 2);
+  const tasksWithLiveElapsed = withLiveElapsedTime(tasks);
+  const jsonString = JSON.stringify(tasksWithLiveElapsed, null, 2);
   downloadFile('tasky-export.json', jsonString, 'application/json');
 };
 
 export const exportToCSV = (tasks: Task[]) => {
+  const tasksWithLiveElapsed = withLiveElapsedTime(tasks);
   const header = 'ID,Title,Tags,Status,ElapsedTime(seconds),CreatedAt,IsCompleted\n';
-  const rows = tasks.map(task => 
+  const rows = tasksWithLiveElapsed.map(task => 
     [
       task.id,
       `"${task.title.replace(/"/g, '""')}"`,
